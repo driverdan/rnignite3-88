@@ -1,0 +1,3 @@
+rootProject.name = 'rnignite3_88'
+
+include ':app'
