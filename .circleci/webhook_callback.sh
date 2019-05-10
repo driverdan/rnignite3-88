@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Script based on https://altinukshini.wordpress.com/2019/01/09/circleci-notifications-in-rocketchat/
 
-url="https://$WEBHOOK_HOSTNAME/api/v1/github-repos/$PROJECT_ID/circleci_webhook"
+url="https://$WEBHOOK_HOSTNAME/api/v1/github-repos/$PROJECT_ID/circleci_webhook/"
 
 payload=$(
 cat <<EOM
