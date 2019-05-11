@@ -11,7 +11,7 @@ cat <<EOM
     "status": "$1",
     "job": "$CIRCLE_JOB",
     "build_num": "$CIRCLE_BUILD_NUM",
-    "project_reponame": "$CIRCLE_PROJECT_REPONAME",
+    "repo": "$CIRCLE_REPOSITORY_URL",
     "branch": "$CIRCLE_BRANCH",
     "build_url": "$CIRCLE_BUILD_URL",
     "compare_url": "$CIRCLE_COMPARE_URL",
