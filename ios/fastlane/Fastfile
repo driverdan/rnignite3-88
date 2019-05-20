@@ -16,16 +16,37 @@
 default_platform(:ios)
 
 platform :ios do
+  before_all do
+    setup_circle_ci
+  end
+
   desc "Runs all the tests"
   lane :tests do
-    run_tests(project: "mobile_rnignite3_88.xcodeproj", scheme: "mobile_rnignite3_88")
+    run_tests(project: "rnignite3_88.xcodeproj", scheme: "rnignite3_88")
   end
 
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    increment_build_number(xcodeproj: "mobile_rnignite3_88.xcodeproj")
+    produce(
+      username: "itunes@driverdan.com",
+      app_identifier: "com.crowdbotics.rnignite3-88",
+      app_name: "rnignite3-88",
+      team_name: "Crowdbotics Corporation",
+      itc_team_name: "Crowdbotics Corporation"
+    )
+    increment_build_number(xcodeproj: "rnignite3_88.xcodeproj")
+    update_app_identifier(
+      xcodeproj: "rnignite3_88.xcodeproj",
+      plist_path: "rnignite3_88/Info.plist",
+      app_identifier: "com.crowdbotics.rnignite3-88"
+    )
+    update_project_team(path: "rnignite3_88.xcodeproj", teamid: "6YKR59QXKM")
     match(type: "appstore", readonly: is_ci)
-    build_app(scheme: "mobile_rnignite3_88")
+    build_app(
+      scheme: "rnignite3_88",
+      export_method: "app-store",
+      xcargs: "-allowProvisioningUpdates"
+    )
     upload_to_testflight
   end
 end
